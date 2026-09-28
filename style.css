@@ -91,7 +91,7 @@ body[data-theme="red"] {
 
 .app {
     min-height: 100vh;
-    padding-bottom: 90px;
+    padding-bottom: 0px;
     overflow: hidden;
 }
 
@@ -4412,7 +4412,7 @@ body.minigame-running > .app {
 @media (max-width: 768px) {
     .app {
         height: 100vh;
-        height: 100dvh;
+        height: 100vh;
         min-height: 0;
     }
 

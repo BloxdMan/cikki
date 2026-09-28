@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="manifest"
+href="manifest.json">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <main class="app">
+
+        <header class="app-header">
+            <time id="app-clock" aria-label="Current time">00:00</time>
+            <div class="crystal-balance" aria-label="Crystal balance">
+                <span id="crystal-amount">0</span>
+                <img src="assets/icon/crystal.png" alt="Crystal">
+            </div>
+            <div class="header-actions">
+                <button id="achievements-toggle" class="header-icon-button" type="button" aria-label="Open achievements" aria-expanded="false">
+                    <span class="header-icon" data-asset="achievements" aria-hidden="true"></span>
+                </button>
+                <button id="settings-toggle" class="settings-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </header>
+
+        <div class="page-wrapper">
+            <div class="page-slider">
+
+                <!-- Pages -->
+                <section class="page" id="groups-page">
+
+                    <header class="page-header">
+                        <h1>Vocabulary</h1>
+                        <p>Your vocabulary</p>
+                    </header>
+
+                    <button class="group-create-btn">Create Group</button>
+
+                    <div class="groups-container">
+                        <!-- Groups will be rendered here dynamically -->
+                    </div>
+
+                </section>
+
+                <section class="page" id="practice-page">
+                    <header class="page-header">
+                        <h1>Practice</h1>
+                        <p>Practice your words</p>
+                    </header>
+
+                    <div class="placeholder">
+                        Select a group to practice your words.
+                    </div>
+                </section>
+
+                <section class="page active" id="dashboard-page">
+                    <div class="placeholder">Loading dashboard...</div>
+                </section>
+
+                <section class="page" id="statistics-page">
+                    <header class="page-header">
+                        <h1>Statistics</h1>
+                        <p>Track your vocabulary growth</p>
+                    </header>
+                    <div class="placeholder">Loading statistics...</div>
+                </section>
+
+                <section class="page" id="minigames-page">
+                    <header class="page-header">
+                        <h1>Minigames</h1>
+                        <p>Quick word challenges</p>
+                    </header>
+                    <div class="minigames-grid"></div>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+
+            <button class="nav-btn">
+                <span class="nav-icon" data-asset="pen" title="Pen" aria-label="Pen"></span>
+            </button>
+
+            <button class="nav-btn">
+                <span class="nav-icon" data-asset="book" title="Book" aria-label="Book"></span>
+            </button>
+
+            <button class="nav-btn active">
+                <span class="nav-icon" data-asset="home" title="Home" aria-label="Home"></span>
+            </button>
+
+            <button class="nav-btn">
+                <span class="nav-icon" data-asset="statistics" title="Statistics" aria-label="Statistics"></span>
+            </button>
+
+            <button class="nav-btn">
+                <span class="nav-icon" data-asset="minigames" title="Minigames" aria-label="Minigames"></span>
+            </button>
+
+        </nav>
+
+    </main>
+
+    <div id="menu-backdrop" class="menu-backdrop" hidden></div>
+    <aside id="menu-sidebar" class="menu-sidebar" hidden aria-label="Menu">
+        <div class="menu-sidebar-header">
+            <div class="menu-profile-summary">
+                <img id="menu-logo" alt="Profile logo">
+                <span id="menu-logo-placeholder" class="menu-logo-placeholder">Logo</span>
+                <strong id="menu-username">Username</strong>
+            </div>
+            <button id="menu-close" type="button" aria-label="Close menu">×</button>
+        </div>
+        <nav class="menu-actions" aria-label="Menu actions">
+            <button type="button" data-menu-action="export">Export</button>
+            <button type="button" data-menu-action="import">Import</button>
+            <button type="button" data-menu-window="profile">Profile</button>
+            <button type="button" data-menu-window="theme">Theme</button>
+            <button type="button" data-menu-window="shop">Shop</button>
+            <button type="button" data-menu-window="settings">Settings</button>
+            <button type="button" data-menu-window="leave">Leave</button>
+        </nav>
+    </aside>
+
+    <section id="settings-screen" class="settings-screen menu-window" hidden aria-label="Settings">
+        <div class="settings-screen-header">
+            <h1>Settings</h1>
+            <button id="settings-close" type="button" aria-label="Close settings">×</button>
+        </div>
+        <div class="settings-data-panel settings-danger-panel">
+            <h2>Statistics</h2>
+            <p>Clear learning progress and review history for all notes.</p>
+            <button id="settings-reset-statistics" class="settings-danger-button" type="button">Reset Statistics</button>
+        </div>
+    </section>
+
+    <section id="profile-screen" class="menu-window fullscreen-window" hidden aria-label="Profile">
+        <div class="fullscreen-window-header"><h1>Profile</h1><button type="button" data-window-close aria-label="Close profile">×</button></div>
+        <form id="profile-form" class="profile-form">
+            <label for="profile-username">Username</label>
+            <input id="profile-username" type="text" maxlength="32" placeholder="Your username">
+            <label for="profile-logo">Logo</label>
+            <input id="profile-logo" type="file" accept="image/*">
+            <img id="profile-logo-preview" class="profile-logo-preview" alt="Logo preview" hidden>
+            <button type="submit">Save profile</button>
+        </form>
+    </section>
+
+    <section id="theme-screen" class="menu-window fullscreen-window" hidden aria-label="Theme">
+        <div class="fullscreen-window-header"><h1>Theme</h1><button type="button" data-window-close aria-label="Close themes">×</button></div>
+        <div id="theme-options" class="theme-options"></div>
+    </section>
+
+    <section id="shop-screen" class="menu-window fullscreen-window" hidden aria-label="Shop">
+        <div class="fullscreen-window-header"><h1>Shop</h1><button type="button" data-window-close aria-label="Close shop">×</button></div>
+        <div class="window-empty"><strong>Shop unavailable</strong><span>There is nothing to buy yet.</span></div>
+    </section>
+
+    <section id="leave-screen" class="menu-window fullscreen-window" hidden aria-label="Leave">
+        <div class="fullscreen-window-header"><h1>Leave</h1><button type="button" data-window-close aria-label="Close leave window">×</button></div>
+        <div class="window-empty"><strong>Leave Cikki?</strong><span>Close this app window when you are ready.</span><button id="leave-confirm" type="button">Close window</button></div>
+    </section>
+
+    <section id="achievements-screen" class="achievements-screen" hidden aria-label="Achievements"></section>
+
+    <div id="json-dialog-root"></div>
+    <div id="crystal-reward-root" aria-live="polite"></div>
+
+    <!-- Add / Edit Group Modal -->
+    <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+        <div id="modal" class="modal" role="dialog" aria-modal="true">
+            <h3 id="modal-title">New Group</h3>
+
+            <label>
+                Name
+                <input id="group-name" type="text" placeholder="Group name">
+            </label>
+
+            <div style="margin-top:12px">
+                <div>Color</div>
+                <div style="display:flex; margin-top:8px; flex-wrap:wrap; gap:5px;">
+                    <div class="color-swatch" data-color="lime" style="background:linear-gradient(180deg,#5fff24,#ffffff)"></div>
+                    <div class="color-swatch" data-color="blue" style="background:linear-gradient(180deg,#0072ff,#dde6ff)"></div>
+                    <div class="color-swatch" data-color="purple" style="background:linear-gradient(180deg,#6a00df,#e5ddff)"></div>
+                    <div class="color-swatch" data-color="magenta" style="background:linear-gradient(180deg,#ff5cc8,#ffffff)"></div>
+                    <div class="color-swatch" data-color="red" style="background:linear-gradient(180deg,#ff4d4d,#ffffff)"></div>
+                    <div class="color-swatch" data-color="yellow" style="background:linear-gradient(180deg,#ffc933,#ffffff)"></div>
+                    <div class="color-swatch" data-color="gray" style="background:linear-gradient(180deg,#808080,#303030)"></div>
+                </div>
+            </div>
+
+            <div style="margin-top:12px">
+                <div>Icon</div>
+                <div class="icon-presets" id="icon-presets">
+                    <!-- presets will be painted by script -->
+                </div>
+            </div>
+
+            <div style="margin-top:16px; display:flex; gap:8px; justify-content:flex-end">
+                <button id="modal-cancel">Cancel</button>
+                <button id="modal-save">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="storage.js"></script>
+    <script src="icons.js"></script>
+    <script src="assets.js"></script>
+    <script src="modal.js"></script>
+    <script src="groups.js"></script>
+    <script src="minigames.js"></script>
+    <script src="slider.js"></script>
+
+</body>
+</html>
